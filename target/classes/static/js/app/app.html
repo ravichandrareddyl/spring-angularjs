@@ -1,0 +1,15 @@
+<div class="container">
+<span onclick="openNav()">open</span>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a routerLinkActive="active" routerLink="/home">Home</a>
+</div>
+  <ul class="nav nav-pills">
+    <li><a routerLinkActive="active" routerLink="/login">Login</a></li>
+    <li><a (click)="filters"></a></li>
+    <li><a (click)="logout()">Logout</a></li>
+  </ul>
+</div>
+<div id="main" class="container">
+  <router-outlet></router-outlet>
+</div>
