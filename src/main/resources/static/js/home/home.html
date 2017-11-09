@@ -1,7 +1,58 @@
-<h1>Greeting</h1>
+
 <div [hidden]="!authenticated()">
-	<p>The ID is {{greeting.id}}</p>
-	<p>The content is {{greeting.content}}</p>
+	<button type="button" (click)="show()">Open Modal</button>
+	<h1>Dam Files</h1>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>DAM file</th>
+					<th>Verison</th>
+					<th>Uploaded By</th>
+					<th>Uploaded Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let damFile of homeModel.damFiles">
+					<td>{{damFile.damId}}</td>
+					<td>{{damFile.damName}}</td>
+					<td>{{damFile.damVersion}}</td>
+					<td>{{damFile.createdBy}}</td>
+					<td>{{damFile.createdDate}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- Modal -->
+	<div (click)="onContainerClicked($event)" class="modal fade" tabindex="-1" [ngClass]="{'in': visibleAnimate}"
+       [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="uploadfile">Upload
+								File:</label>
+							<div class="col-sm-5">
+								<input class="form-control" type="file" (change)="uploadedFile($event)" placeholder="Upload File" accept=".csv"/>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+          			<button type="button" class="btn btn-default" (click)="hide()">Close</button>
+        		</div>
+			</div>
+
+		</div>
+	</div>
 </div>
 <div [hidden]="authenticated()">
 	<p>Login to see your greeting</p>
